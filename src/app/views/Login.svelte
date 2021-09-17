@@ -19,15 +19,15 @@
       if ($isAuthenticated) navigate("/");
    });
 
-   // const loginHandler = async (): Promise<void> => {
-   //    try {
-   //       error = "";
-   //       const postData = await API.post("auth/login", { username, password });
-   //       console.log({ postData });
-   //    } catch (err) {
-   //       error = "Invalid username and/or password. Please try again";
-   //    }
-   // };
+   const loginHandler = async (): Promise<void> => {
+      try {
+         error = "";
+         const postData = await API.post("auth/login", { username, password });
+         console.log({ postData });
+      } catch (err) {
+         error = "Invalid username and/or password. Please try again";
+      }
+   };
 
    // const loginHandler = async () => {
    //    try {
