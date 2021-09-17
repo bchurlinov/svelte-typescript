@@ -19,7 +19,7 @@
       if ($isAuthenticated) navigate("/");
    });
 
-   const loginHandler = async (): Promise<void> => {
+   const handleLogin = async (): Promise<void> => {
       try {
          error = "";
          const postData = await API.post("auth/login", { username, password });
@@ -28,23 +28,6 @@
          error = "Invalid username and/or password. Please try again";
       }
    };
-
-   // const loginHandler = async () => {
-   //    try {
-   //       const { token } = await API.post("auth/login", {
-   //          username: "Bojan",
-   //          password: "sauron1985",
-   //       });
-
-   //       if (token) {
-   //          isAuthenticated.set(true);
-   //          localStorage.setItem("token", token);
-   //          navigate("/");
-   //       }
-   //    } catch (err) {
-   //       console.log(err.response);
-   //    }
-   // };
 </script>
 
 <div class="login">
@@ -54,44 +37,32 @@
             <Login24 style="margin-right: 15px; color: var(--primary-color);" />Sign In
          </h1>
       </div>
-      <Sveltik
-         initialValues={{ username: "", password: "" }}
-         onSubmit={(values, actions) => {
-            console.log({ values, actions });
-         }}
-         let:props
-      >
-         <form on:submit|preventDefault={props.handleSubmit}>
-            <div class="form-group">
-               <TextInput
-                  on:input={props.handleInput}
-                  on:blur={props.handleBlur}
-                  value={props.values.username}
-                  name="username"
-                  labelText="Username"
-                  light
-                  invalidText="cool"
-                  invalid={false}
-               />
-            </div>
-            <div class="form-group">
-               <TextInput
-                  type="password"
-                  on:input={props.handleInput}
-                  on:blur={props.handleBlur}
-                  value={props.values.password}
-                  name="password"
-                  labelText="Password"
-                  light
-                  invalidText="cool"
-                  invalid={false}
-               />
-            </div>
-            <div class="form-group cta">
-               <Button type="submit">Submit</Button>
-            </div>
-         </form>
-      </Sveltik>
+      <form on:submit|preventDefault={handleLogin}>
+         <div class="form-group">
+            <TextInput
+               bind:value={username}
+               name="username"
+               labelText="Username"
+               light
+               invalidText="cool"
+               invalid={false}
+            />
+         </div>
+         <div class="form-group">
+            <TextInput
+               bind:value={password}
+               type="password"
+               name="password"
+               labelText="Password"
+               light
+               invalidText="cool"
+               invalid={false}
+            />
+         </div>
+         <div class="form-group cta">
+            <Button type="submit">Submit</Button>
+         </div>
+      </form>
 
       <div class="login__link">
          <p>

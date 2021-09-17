@@ -1,6 +1,6 @@
 <script lang="ts">
    import { link } from "svelte-routing";
-   import Button, { Label } from "@smui/button";
+   import { Button } from "carbon-components-svelte";
 
    export let isAuthenticated;
 
@@ -19,9 +19,7 @@
             </li>
             {#if isAuthenticated}
                <li class="nav-wrap__item">
-                  <Button on:click={logOutHandler} variant="outlined" class="lowercase">
-                     <Label>Logout</Label>
-                  </Button>
+                  <Button on:click={logOutHandler} class="lowercase">Logout</Button>
                </li>
             {:else}
                <li class="nav-wrap__item">

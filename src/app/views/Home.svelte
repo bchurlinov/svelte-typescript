@@ -2,7 +2,6 @@
    import { onMount } from "svelte";
    import { navigate } from "svelte-routing";
    import { isAuthenticated } from "../stores/auth";
-   import Button, { Label } from "@smui/button";
    import API from "../api/api";
 
    let actors = [];
@@ -62,13 +61,4 @@
 
 <div>
    <h1>Welcome from the home page</h1>
-   <Button on:click={createActor} variant="raised">
-      <Label>Create an actor</Label>
-   </Button>
-   <Button on:click={() => getAllActors(0, 25)} variant="raised">
-      <Label>{isLoading ? "Is Loading" : "Get all actors"}</Label>
-   </Button>
-   {#if actors.length !== 0}
-      <div>{JSON.stringify(actors)}</div>
-   {/if}
 </div>
